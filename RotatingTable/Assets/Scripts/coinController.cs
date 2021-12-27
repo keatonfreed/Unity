@@ -20,7 +20,6 @@ public class coinController : MonoBehaviour
     void Awake() {
         gameController = GameObject.Find("GameController");
         rb = gameObject.GetComponent<Rigidbody>();
-        Debug.Log(rb);
 
         // quaternionToVector = startQuaternion.eulerAngles;
     }
