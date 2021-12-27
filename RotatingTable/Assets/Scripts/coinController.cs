@@ -10,17 +10,18 @@ public class coinController : MonoBehaviour
 
 
 
-    public Quaternion startQuaternion;
     public bool rotateConstantly = true;
 
     public float RotateAmount = 1;
  
 
-
+    Rigidbody rb;
     GameObject gameController;
     void Awake() {
         gameController = GameObject.Find("GameController");
-        startQuaternion = transform.rotation;
+        rb = gameObject.GetComponent<Rigidbody>();
+        Debug.Log(rb);
+
         // quaternionToVector = startQuaternion.eulerAngles;
     }
 
@@ -31,14 +32,12 @@ public class coinController : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update() {
-        // Smoothly tilts a transform towards a target rotation.
-        float shouldTiltZ = -Input.GetAxis("Horizontal");
-        float shouldTiltX = Input.GetAxis("Vertical");
+    void FixedUpdate() {
 
         // Rotate the cube by converting the angles into a quaternion.
         if(rotateConstantly) {
-            transform.Rotate(Vector3.up * RotateAmount);
+           // transform.Rotate(Vector3.up * RotateAmount);
+            transform.RotateAround(rb.worldCenterOfMass, Vector3.up, RotateAmount);
         }
     
     }
