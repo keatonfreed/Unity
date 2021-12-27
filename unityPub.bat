@@ -1,14 +1,24 @@
 @echo off
 cd C:\Users\keato\Documents\Unity
-if "%1" == "" goto no
+
+
+git add *
 git commit -a -e
 git status
 goto end
 
-:no
+@REM if want to use args not -e
+@REM if "%1" == "" goto no
+@REM git commit -a -e
+@REM git status
+@REM goto end
 
-echo No Name Provided!
-echo Use: unityPub (message to publish)
-goto end
+@REM :no
+
+@REM echo No Name Provided!
+@REM echo Use: unityPub (message to publish)
+@REM goto end
+
+@REM :end
 
 :end
