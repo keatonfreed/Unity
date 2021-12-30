@@ -43,8 +43,8 @@ public class sphereController : MonoBehaviour
     {
         // Debug.Log(controller);
 
-        if(rb.position.y <= -15) {
-            Destroy(gameObject);
+        if(rb.position.y <= -10) {
+            controller.Die(gameObject);
         }
                 if(zMove) {
 

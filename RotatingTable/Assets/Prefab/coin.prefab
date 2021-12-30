@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8beb1d6a262478b468e287e934a5fc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startQuaternion: {x: 0, y: 0, z: 0, w: 0}
   rotateConstantly: 1
   RotateAmount: 7.5
 --- !u!54 &1533993116322537397
@@ -126,5 +125,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 150, y: 150, z: 23.242998}
+  m_Size: {x: 159.54445, y: 153.60992, z: 50.09271}
   m_Center: {x: -1, y: -1, z: 11.621499}

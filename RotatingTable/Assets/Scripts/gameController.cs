@@ -12,15 +12,26 @@ public class gameController : MonoBehaviour
 
     public Text scoreText;
     public int score = 0;
+    public int startCoins = 0;
+
+    private SceneController sceneCon;
+    private GameObject sphereSpawner;
+
+    public GameObject completeLevelUI;
+    public GameObject DieScreen;
 
     // Start is called before the first frame update
     void Start()
     { 
-        spawnSphere();
         winScreen = false;
+        if(GetComponent<SceneController>() != null){
+        sceneCon = GetComponent<SceneController>();
+        }
+        startCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
+        sphereSpawner = GameObject.Find("SphereSpawn");
+        spawnSphere();
     }
 
-    public GameObject completeLevelUI;
 
     public void completeLevel() {
         completeLevelUI.SetActive(true);
@@ -29,13 +40,13 @@ public class gameController : MonoBehaviour
     public void nextLevel() {
         completeLevelUI.SetActive(false);
         winScreen = false;
+        sceneCon.NextScene();
     }
     
-    // Update is called once per frame
     void Update()
     {
 
-                scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString() + "/" + startCoins.ToString();
 
         // if(Input.GetKeyDown("a")) {
         // spawnSphere();
@@ -49,21 +60,26 @@ public class gameController : MonoBehaviour
         if(Input.GetKeyDown("g")) {
             spawnSphere();
         }
+        if(Input.GetKeyDown("h")) {
+            startCoins = 0;
+        }
 
-        coins = GameObject.FindGameObjectsWithTag("Coin");
-        if(winScreen == false && coins.Length <= 0) {
+        if(winScreen == false && score >= startCoins) {
             completeLevel();
         }
     }
 
 
     void spawnSphere() {
-        prefab.name = "test";
-        Instantiate(prefab, new Vector3(0f,9f,10f),transform.rotation);
+        prefab.name = "Sphere";
+        // Instantiate(prefab, new Vector3(0f,9f,10f),transform.rotation);
+        Instantiate(prefab, sphereSpawner.transform.position, transform.rotation);
+
     }
 
-    public void die() {
-        // Debug.Log("test");
+    public void Die(GameObject ball) {
+        Destroy(ball);
+        DieScreen.SetActive(true);
     }
 
 }

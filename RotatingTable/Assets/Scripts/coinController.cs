@@ -35,8 +35,8 @@ public class coinController : MonoBehaviour
 
         // Rotate the cube by converting the angles into a quaternion.
         if(rotateConstantly) {
-           // transform.Rotate(Vector3.up * RotateAmount);
-            transform.RotateAround(rb.worldCenterOfMass, Vector3.up, RotateAmount);
+           transform.Rotate(Vector3.up * RotateAmount);
+            // transform.RotateAround(rb.worldCenterOfMass, Vector3.up, RotateAmount);
         }
     
     }
