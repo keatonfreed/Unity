@@ -43,9 +43,10 @@ public class sphereController : MonoBehaviour
     {
         // Debug.Log(controller);
 
-        if(rb.position.y <= -10) {
+        if(rb.position.y <= -10 || Input.GetKeyDown("r")) {
             controller.Die(gameObject);
         }
+
     if(zMove) {
 
         if(Input.GetKey("w")) {
@@ -79,7 +80,7 @@ public class sphereController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision) {
         if(collision.gameObject.tag == "Coin") {
-            controller.score++;
+            controller.collected++;
             ballScore++;
             Destroy(collision.gameObject);
         }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6266404028978198190}
   - component: {fileID: 6266404028978198191}
   - component: {fileID: 7102139288956182486}
+  - component: {fileID: 5945782513695929441}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -49,7 +50,10 @@ MonoBehaviour:
   winScreen: 0
   scoreText: {fileID: 0}
   score: 0
+  startCoins: 0
   completeLevelUI: {fileID: 0}
+  DieScreen: {fileID: 0}
+  dieScreen: 0
 --- !u!114 &7102139288956182486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,3 +66,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498207f7fc85674fa92dd0c13c81b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5945782513695929441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266404028978198184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955aa6879f1f594479cf622ef439a492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 0}
+  timeLimit: 10

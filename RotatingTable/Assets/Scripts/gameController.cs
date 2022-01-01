@@ -7,28 +7,33 @@ public class gameController : MonoBehaviour
 {
 
     public GameObject prefab;
-    public GameObject[] coins;
-    public bool winScreen = false;
 
-    public Text scoreText;
-    public int score = 0;
-    public int startCoins = 0;
+    public Text collectedText;
+    public int collected = 0;
+    public int coinsCount = 0;
 
-    private SceneController sceneCon;
+    private SceneController sceneController;
     private GameObject sphereSpawner;
 
     public GameObject completeLevelUI;
     public GameObject DieScreen;
+    public bool winScreen = false;
+    public bool dieScreen = false;
+    public Text scoreText;
 
-    // Start is called before the first frame update
+    private TimeController timeController;
+
     void Start()
     { 
+        timeController = GetComponent<TimeController>();
         winScreen = false;
+        dieScreen = false;
         if(GetComponent<SceneController>() != null){
-        sceneCon = GetComponent<SceneController>();
+        sceneController = GetComponent<SceneController>();
         }
-        startCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
+        coinsCount = GameObject.FindGameObjectsWithTag("Coin").Length;
         sphereSpawner = GameObject.Find("SphereSpawn");
+        collectedText = GameObject.Find("Collected").GetComponent<Text>();
         spawnSphere();
     }
 
@@ -36,35 +41,33 @@ public class gameController : MonoBehaviour
     public void completeLevel() {
         completeLevelUI.SetActive(true);
         winScreen = true;
+        timeController.stopCountDown();
+        scoreText.text = "Score: " + timeController.getTimeScore() + "/" + timeController.getTimeScoreMax();
     }
+
     public void nextLevel() {
         completeLevelUI.SetActive(false);
         winScreen = false;
-        sceneCon.NextScene();
+        sceneController.NextScene();
     }
     
     void Update()
     {
 
-        scoreText.text = "Score: " + score.ToString() + "/" + startCoins.ToString();
+        collectedText.text = "Collected: " + collected.ToString() + "/" + coinsCount.ToString();
 
-        // if(Input.GetKeyDown("a")) {
-        // spawnSphere();
-        // }
-        if(Input.GetMouseButtonDown(0)) {
-            // spawnSphere();
-        }
         if(Input.GetKey("t")) {
             spawnSphere();
         }
         if(Input.GetKeyDown("g")) {
             spawnSphere();
         }
-        if(Input.GetKeyDown("h")) {
-            startCoins = 0;
+        if(Input.GetKeyDown("q")) {
+            completeLevel();
         }
 
-        if(winScreen == false && score >= startCoins) {
+
+        if(winScreen == false && dieScreen == false && collected >= coinsCount) {
             completeLevel();
         }
     }
@@ -72,14 +75,17 @@ public class gameController : MonoBehaviour
 
     void spawnSphere() {
         prefab.name = "Sphere";
-        // Instantiate(prefab, new Vector3(0f,9f,10f),transform.rotation);
         Instantiate(prefab, sphereSpawner.transform.position, transform.rotation);
-
     }
 
-    public void Die(GameObject ball) {
+    public void Die(GameObject ball = null) {
+        if(ball != null) {
         Destroy(ball);
+        }
+        if(!winScreen) {
         DieScreen.SetActive(true);
+        dieScreen = true;
+        }
     }
 
 }
