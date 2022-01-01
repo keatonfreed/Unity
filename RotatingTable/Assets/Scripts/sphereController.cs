@@ -46,7 +46,7 @@ public class sphereController : MonoBehaviour
         if(rb.position.y <= -10) {
             controller.Die(gameObject);
         }
-                if(zMove) {
+    if(zMove) {
 
         if(Input.GetKey("w")) {
             force(0,0,moveForce);
@@ -61,10 +61,6 @@ public class sphereController : MonoBehaviour
         if(Input.GetKey("d")) {
             force(moveForce,0,0);
         }
-
-    // if(rb.velocity.x > maxVel) {rb.velocity = new Vector3(maxVel,rb.velocity.y,rb.velocity.z);}
-    // if(rb.velocity.y > maxVel) {rb.velocity = new Vector3(rb.velocity.x,maxVel,rb.velocity.z);}
-    // if(rb.velocity.x > maxVel) {rb.velocity = new Vector3(rb.velocity.x,rb.velocity.y,maxVel);}
 
     }
 
