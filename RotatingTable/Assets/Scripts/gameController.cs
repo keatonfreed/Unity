@@ -65,6 +65,10 @@ public class gameController : MonoBehaviour
         if(Input.GetKeyDown("q")) {
             completeLevel();
         }
+        if(Input.GetKeyDown("r")) {
+            Die();
+        }
+        
 
 
         if(winScreen == false && dieScreen == false && collected >= coinsCount) {

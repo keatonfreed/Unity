@@ -43,7 +43,7 @@ public class sphereController : MonoBehaviour
     {
         // Debug.Log(controller);
 
-        if(rb.position.y <= -10 || Input.GetKeyDown("r")) {
+        if(rb.position.y <= -10) {
             controller.Die(gameObject);
         }
 
