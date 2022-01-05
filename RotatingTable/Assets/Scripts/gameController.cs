@@ -39,10 +39,12 @@ public class gameController : MonoBehaviour
 
 
     public void completeLevel() {
+        if(winScreen == false && dieScreen == false) {
         completeLevelUI.SetActive(true);
         winScreen = true;
         timeController.stopCountDown();
         scoreText.text = "Score: " + timeController.getTimeScore() + "/" + timeController.getTimeScoreMax();
+        }
     }
 
     public void nextLevel() {
@@ -71,7 +73,7 @@ public class gameController : MonoBehaviour
         
 
 
-        if(winScreen == false && dieScreen == false && collected >= coinsCount) {
+        if(collected >= coinsCount) {
             completeLevel();
         }
     }
@@ -87,6 +89,7 @@ public class gameController : MonoBehaviour
         Destroy(ball);
         }
         if(!winScreen) {
+        timeController.stopCountDown();
         DieScreen.SetActive(true);
         dieScreen = true;
         }

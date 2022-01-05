@@ -13,6 +13,7 @@ public class TimeController : MonoBehaviour
     gameController controller;
     public int score;
     public float multiplier = 5;
+    Animator animator;
      
     void Start()
     {   
@@ -20,12 +21,14 @@ public class TimeController : MonoBehaviour
         timerActive = true;
         timeText = GameObject.Find("Timer").GetComponent<Text>();
         currentTime = timeLimit+1;
+        animator = timeText.GetComponent<Animator>();
     }
 
     void Update()
     {
         if(timerActive) {
             currentTime -= Time.deltaTime;
+            animator.SetBool("flashing", (currentTime <= 10));
             if(currentTime <= 0) {
                 stopCountDown();
                 controller.Die();
@@ -33,13 +36,14 @@ public class TimeController : MonoBehaviour
         }
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         if(time.Minutes >= 1) {
-        timeText.text = time.Minutes.ToString() + ":" + time.Seconds.ToString();
+        timeText.text = time.ToString("m':'ss");
         } else {
         timeText.text = time.Seconds.ToString();
         }
     }
 
     public void stopCountDown() {
+        animator.SetBool("flashing", false);
         timerActive = false;
     }
 
