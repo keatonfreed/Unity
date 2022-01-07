@@ -46,6 +46,9 @@ public class TimeController : MonoBehaviour
         animator.SetBool("flashing", false);
         timerActive = false;
     }
+    public void changeCount(int count) {
+        currentTime += count;
+    }
 
     public int getTimeScore() { 
         return Mathf.RoundToInt(currentTime * multiplier);

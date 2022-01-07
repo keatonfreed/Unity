@@ -55,20 +55,26 @@ public class gameController : MonoBehaviour
     
     void Update()
     {
-
         collectedText.text = "Collected: " + collected.ToString() + "/" + coinsCount.ToString();
 
         if(Input.GetKey("t")) {
-            spawnSphere();
+            // spawnSphere();
         }
         if(Input.GetKeyDown("g")) {
-            spawnSphere();
+            // spawnSphere();
         }
         if(Input.GetKeyDown("q")) {
             completeLevel();
         }
         if(Input.GetKeyDown("r")) {
             Die();
+        }
+        
+        if(Input.GetKeyDown("l")) {
+            // timeController.changeCount(-1);
+        }
+        if(Input.GetKeyDown("o")) {
+            // timeController.changeCount(1);
         }
         
 
