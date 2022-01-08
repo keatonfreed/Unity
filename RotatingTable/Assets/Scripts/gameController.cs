@@ -64,7 +64,7 @@ public class gameController : MonoBehaviour
             // spawnSphere();
         }
         if(Input.GetKeyDown("q")) {
-            completeLevel();
+            // completeLevel();
         }
         if(Input.GetKeyDown("r")) {
             Die();
